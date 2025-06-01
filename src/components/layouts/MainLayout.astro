@@ -1,0 +1,61 @@
+---
+import "../../styles/global.css";
+import { ClientRouter } from "astro:transitions";
+import Sidebar from "../global/Sidebar.astro";
+import MusicPlayer from "../global/MusicPlayer.tsx";
+
+interface Props {
+  title?: string;
+  user?: { id: string; name: string } | null;
+}
+
+const { title, user: propsUser } = Astro.props;
+const user = propsUser ?? (await Astro.session?.get("user"));
+const isAuthenticated = !!user;
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+    <ClientRouter />
+  </head>
+  <body class="bg-black relative w-screen min-h-screen overflow-x-hidden">
+    {isAuthenticated && (
+      <!-- Authenticated layout -->
+        <div class="relative flex">
+          <!-- Persistent Sidebar -->
+          <div
+            class="relative z-20"
+            data-component="sidebar"
+          >
+            <Sidebar user={user} transition:persist="sidebar-component" transition:persist-props />
+          </div>
+          
+          <!-- Main content area -->
+          <div 
+            class="flex-1 flex flex-col bg-gray-900 pt-0"
+            transition:name="main-content"
+            transition:animate="slide"
+          >
+            <slot />
+          </div>
+        </div>
+        
+        <!-- Persistent Music Player -->
+        <div
+          class="fixed bottom-0 left-16 right-0 z-[19] pb-4 bg-gray-800 bg-opacity-50 backdrop-blur-lg pt-2 shadow-lg"
+          data-component="music-player"
+          transition:name="app-music-player"
+          transition:persist="music-player-component"
+        >
+          <div class="px-4">
+            <MusicPlayer client:only="react" user={user} transition:persist="music-player-global" transition:persist-props />
+          </div>
+        </div>
+    )}
+  </body>
+</html>

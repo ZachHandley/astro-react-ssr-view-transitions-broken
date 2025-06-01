@@ -1,0 +1,76 @@
+---
+interface Props {
+  user?: { id: string; name: string };
+}
+
+const { user } = Astro.props;
+
+const menus = [
+  { name: "Home", to: "/", icon: "🏠" },
+  { name: "Dashboard", to: "/dashboard", icon: "📊" },
+  { name: "Profile", to: "/profile", icon: "👤" },
+];
+
+const currentPath = Astro.url.pathname;
+---
+
+<section class={`gap-6 h-screen ${user ? "flex" : "hidden"}`}>
+  <div class="bg-gray-900 fixed top-0 h-screen z-10 w-16 text-white px-2">
+    <!-- Main flex container -->
+    <div class="flex flex-col h-full py-2">
+      
+      <!-- Logo -->
+      <div class="py-0 flex justify-start mt-2 mb-4">
+        <div class="w-12 h-12 bg-blue-500 rounded-lg flex items-center justify-center text-white font-bold">
+          L
+        </div>
+      </div>
+
+      <!-- Navigation -->
+      <div class="flex flex-col gap-4">
+        {menus.map((menu) => {
+          const isActive = currentPath === menu.to;
+          return (
+            <a
+              href={menu.to}
+              data-nav-link={menu.to}
+              class={`flex items-center text-sm font-medium p-2 hover:bg-gray-700 rounded-md transition-colors ${
+                isActive ? "bg-gray-700 text-white" : "text-gray-300"
+              }`}
+            >
+              <span class="text-lg mr-2">{menu.icon}</span>
+              <span class="hidden lg:block">{menu.name}</span>
+            </a>
+          );
+        })}
+      </div>
+    </div>
+  </div>
+
+  <!-- Spacer div -->
+  <div class="w-16 flex-shrink-0"></div>
+</section>
+
+<script>
+  function updateActiveNav() {
+    const currentPath = window.location.pathname;
+    const navLinks = document.querySelectorAll('[data-nav-link]');
+    
+    navLinks.forEach(link => {
+      const linkPath = link.getAttribute('data-nav-link');
+      const isActive = currentPath === linkPath;
+      
+      if (isActive) {
+        link.classList.remove('text-gray-300');
+        link.classList.add('bg-gray-700', 'text-white');
+      } else {
+        link.classList.remove('bg-gray-700', 'text-white');
+        link.classList.add('text-gray-300');
+      }
+    });
+  }
+
+  document.addEventListener('DOMContentLoaded', updateActiveNav);
+  document.addEventListener('astro:after-swap', updateActiveNav);
+  document.addEventListener('astro:page-load', updateActiveNav);
+</script>

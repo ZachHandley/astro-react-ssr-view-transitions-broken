@@ -1,0 +1,29 @@
+{
+  "name": "@example/framework-react",
+  "type": "module",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "@astrojs/cloudflare": "^12.5.3",
+    "@astrojs/react": "^4.3.0",
+    "@iconify-json/fluent": "^1.2.23",
+    "@iconify-json/material-symbols": "^1.2.23",
+    "@iconify-json/ri": "^1.2.5",
+    "@iconify-json/tabler": "^1.2.18",
+    "@iconify/react": "^6.0.0",
+    "@tailwindcss/vite": "^4.1.8",
+    "@types/react": "^18.3.20",
+    "@types/react-dom": "^18.3.6",
+    "astro": "^5.8.1",
+    "astro-icon": "^1.1.5",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "tailwindcss": "^4.1.8"
+  }
+}
