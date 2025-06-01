@@ -7,16 +7,20 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "preview_cf": "npm run build && npx wrangler pages dev ./dist --port 6942"
   },
   "dependencies": {
     "@astrojs/cloudflare": "^12.5.3",
     "@astrojs/react": "^4.3.0",
+    "@crossmint/client-sdk-react-ui": "^2.0.0",
+    "@crossmint/server-sdk": "^1.2.23",
     "@iconify-json/fluent": "^1.2.23",
     "@iconify-json/material-symbols": "^1.2.23",
     "@iconify-json/ri": "^1.2.5",
     "@iconify-json/tabler": "^1.2.18",
     "@iconify/react": "^6.0.0",
+    "@reactuses/core": "^6.0.3",
     "@tailwindcss/vite": "^4.1.8",
     "@types/react": "^18.3.20",
     "@types/react-dom": "^18.3.6",

@@ -3,6 +3,7 @@ import "../../styles/global.css";
 import { ClientRouter } from "astro:transitions";
 import Sidebar from "../global/Sidebar.astro";
 import MusicPlayer from "../global/MusicPlayer.tsx";
+import CrossmintProvider from "../global/CrossmintProvider.tsx";
 
 interface Props {
   title?: string;
@@ -24,6 +25,7 @@ const isAuthenticated = !!user;
     <ClientRouter />
   </head>
   <body class="bg-black relative w-screen min-h-screen overflow-x-hidden">
+    <CrossmintProvider client:only="react" />
     {isAuthenticated && (
       <!-- Authenticated layout -->
         <div class="relative flex">
@@ -49,11 +51,9 @@ const isAuthenticated = !!user;
         <div
           class="fixed bottom-0 left-16 right-0 z-[19] pb-4 bg-gray-800 bg-opacity-50 backdrop-blur-lg pt-2 shadow-lg"
           data-component="music-player"
-          transition:name="app-music-player"
-          transition:persist="music-player-component"
         >
           <div class="px-4">
-            <MusicPlayer client:only="react" user={user} transition:persist="music-player-global" transition:persist-props />
+            <MusicPlayer client:load user={user} transition:persist transition:persist-props />
           </div>
         </div>
     )}

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 
 interface MusicPlayerProps {
   user?: { id: string; name: string };
@@ -8,19 +8,6 @@ export default function MusicPlayer({ user }: MusicPlayerProps) {
   const [isPlaying, setIsPlaying] = useState(false);
   const [currentSong, setCurrentSong] = useState('No Song Playing');
   const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    setMounted(true);
-    console.log('[MusicPlayer] Component mounted');
-  }, []);
-
-  if (!mounted) {
-    return (
-      <div className="flex items-center justify-between w-full p-4 bg-gray-700 rounded-lg">
-        <div className="text-white">Loading...</div>
-      </div>
-    );
-  }
 
   return (
     <div className="flex items-center justify-between w-full p-4 bg-gray-700 rounded-lg">
