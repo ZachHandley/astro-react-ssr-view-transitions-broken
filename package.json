@@ -8,12 +8,12 @@
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
-    "preview_cf": "npm run build && npx wrangler pages dev ./dist --port 6942"
+    "preview_cf": "pnpm run build && pnpx wrangler pages dev ./dist --port 6942"
   },
   "dependencies": {
     "@astrojs/cloudflare": "^12.5.3",
     "@astrojs/react": "^4.3.0",
-    "@crossmint/client-sdk-react-ui": "^2.0.0",
+    "@crossmint/client-sdk-react-ui": "link:../zcrossmint-sdk/packages/client/ui/react-ui",
     "@crossmint/server-sdk": "^1.2.23",
     "@iconify-json/fluent": "^1.2.23",
     "@iconify-json/material-symbols": "^1.2.23",
@@ -29,5 +29,6 @@
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "tailwindcss": "^4.1.8"
-  }
+  },
+  "packageManager": "pnpm@10.11.1+sha512.e519b9f7639869dc8d5c3c5dfef73b3f091094b0a006d7317353c72b124e80e1afd429732e28705ad6bfa1ee879c1fce46c128ccebd3192101f43dd67c667912"
 }

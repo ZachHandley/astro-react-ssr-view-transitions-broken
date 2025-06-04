@@ -12,14 +12,19 @@ export const POST: APIRoute = async ({ cookies, session }) => {
   // Clear Astro session if available
   if (session) {
     // Get user ID from session if exists (for logging purposes)
-    const user = await session.get("user");
+    const user = await session?.get("user");
     if (user) {
       console.log(`Logging out user: ${user.id}`);
     }
-    session.delete("user");
+    const sessionData = await session?.get("session");
+    if (sessionData) {
+      console.log(`Logging out session: ${sessionData.id}`);
+    }
+    session?.delete("user");
+    session?.delete("session");
 
     // Clear all session data
-    session.destroy();
+    session?.destroy();
   }
 
   return new Response(JSON.stringify({ success: true } as LogoutResponse), {

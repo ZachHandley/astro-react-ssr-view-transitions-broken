@@ -31,7 +31,7 @@ const isAuthenticated = !!user;
         <div class="relative flex">
           <!-- Persistent Sidebar -->
           <div
-            class="relative z-20"
+            class="relative z-50"
             data-component="sidebar"
           >
             <Sidebar user={user} transition:persist="sidebar-component" transition:persist-props />
@@ -49,7 +49,7 @@ const isAuthenticated = !!user;
         
         <!-- Persistent Music Player -->
         <div
-          class="fixed bottom-0 left-16 right-0 z-[19] pb-4 bg-gray-800 bg-opacity-50 backdrop-blur-lg pt-2 shadow-lg"
+          class="fixed bottom-0 left-16 right-0 z-[30] pb-4 bg-gray-800 bg-opacity-50 backdrop-blur-lg pt-2 shadow-lg"
           data-component="music-player"
         >
           <div class="px-4">

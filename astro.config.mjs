@@ -5,6 +5,7 @@ import react from "@astrojs/react";
 import tailwindcss from "@tailwindcss/vite";
 import icon from "astro-icon";
 import cloudflare from "@astrojs/cloudflare";
+import { env } from "./src/env";
 
 // https://astro.build/config
 export default defineConfig({
@@ -13,6 +14,7 @@ export default defineConfig({
   server: {
     port: 6942,
   },
+  env: env,
   integrations: [
     react(),
     icon({
@@ -28,5 +30,6 @@ export default defineConfig({
 
   adapter: cloudflare({
     imageService: "passthrough",
+    sessionKVBindingName: "TEST_SESSION",
   }),
 });

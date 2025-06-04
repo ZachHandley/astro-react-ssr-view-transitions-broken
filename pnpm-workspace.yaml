@@ -1,0 +1,9 @@
+onlyBuiltDependencies:
+  - '@tailwindcss/oxide'
+  - bufferutil
+  - esbuild
+  - sharp
+  - utf-8-validate
+  - workerd
+overrides:
+  '@crossmint/client-sdk-react-ui': link:../zcrossmint-sdk/packages/client/ui/react-ui

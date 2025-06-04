@@ -1,0 +1,10 @@
+name = "astro-react-ssr-view-transitions-broken"
+compatibility_flags = ["nodejs_compat"]
+compatibility_date = "2025-05-20"
+pages_build_output_dir = "dist"
+[[kv_namespaces]]
+binding = "TEST_SESSION"
+id = "b5787cf566d24c669c75afe5057b1881"
+
+[vars]
+NODE_VERSION = "22.11.0"
